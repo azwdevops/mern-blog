@@ -16,6 +16,7 @@ import CategoryPosts from "@/pages/CategoryPosts";
 import AuthorPosts from "@/pages/AuthorPosts";
 import Dashboard from "@/pages/Dashboard";
 import Logout from "@/pages/Logout";
+import DeletePost from "./pages/DeletePost";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
       { path: "/create-post", element: <CreatePost /> },
       { path: "/posts/:id", element: <PostDetail /> },
       { path: "/posts/:id/edit", element: <EditPost /> },
+      { path: "/posts/:id/delete", element: <DeletePost /> },
       { path: "/authors", element: <Authors /> },
       { path: "/posts/categories/:category", element: <CategoryPosts /> },
       { path: "/posts/users/:id", element: <AuthorPosts /> },
