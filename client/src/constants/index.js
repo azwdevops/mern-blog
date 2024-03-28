@@ -29,10 +29,10 @@ export const REACT_QUILL_FORMATS = [
 
 export const POST_CATEGORIES = [
   "Agriculture",
+  "Art",
   "Business",
   "Education",
   "Entertainment",
-  "Art",
   "Investment",
   "Uncategorized",
   "Weather",

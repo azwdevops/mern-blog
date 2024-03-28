@@ -8,6 +8,7 @@ const PostItem = ({
   thumbnail,
   category,
   authorId,
+  createdAt,
 }) => {
   const shortDescription =
     description.length > 100 ? description.substr(0, 100) + "..." : description;
@@ -15,15 +16,18 @@ const PostItem = ({
   return (
     <article className="post">
       <div className="post-thumbnail">
-        <img src={thumbnail} alt={postTitle} />
+        <img
+          src={`${import.meta.env.VITE_APP_ASSETS_URL}/uploads/${thumbnail}`}
+          alt={postTitle}
+        />
       </div>
       <div className="post-content">
         <Link to={`/posts/${postId}`}>
           <h3>{postTitle}</h3>
         </Link>
-        <p>{shortDescription}</p>
+        <p dangerouslySetInnerHTML={{ __html: shortDescription }}></p>
         <div className="post-footer">
-          <PostAuthor authorId={authorId} />
+          <PostAuthor authorId={authorId} createdAt={createdAt} />
           <Link to={`/posts/categories/${category}`} className="btn category">
             {category}
           </Link>

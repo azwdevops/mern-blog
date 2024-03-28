@@ -17,25 +17,30 @@ import AuthorPosts from "@/pages/AuthorPosts";
 import Dashboard from "@/pages/Dashboard";
 import Logout from "@/pages/Logout";
 import DeletePost from "./pages/DeletePost";
+import AuthProvider from "./context/AuthContext";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
+    element: (
+      <AuthProvider>
+        <Layout />
+      </AuthProvider>
+    ),
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <Home /> },
       { path: "/register", element: <Register /> },
       { path: "/login", element: <Login /> },
-      { path: "/profile/:id", element: <UserProfile /> },
+      { path: "/profile/:userId", element: <UserProfile /> },
       { path: "/create-post", element: <CreatePost /> },
-      { path: "/posts/:id", element: <PostDetail /> },
-      { path: "/posts/:id/edit", element: <EditPost /> },
-      { path: "/posts/:id/delete", element: <DeletePost /> },
+      { path: "/posts/:postId", element: <PostDetail /> },
+      { path: "/posts/:postId/edit", element: <EditPost /> },
+      { path: "/posts/:postId/delete", element: <DeletePost /> },
       { path: "/authors", element: <Authors /> },
       { path: "/posts/categories/:category", element: <CategoryPosts /> },
-      { path: "/posts/users/:id", element: <AuthorPosts /> },
-      { path: "/myposts/:id", element: <Dashboard /> },
+      { path: "/posts/users/:userId", element: <AuthorPosts /> },
+      { path: "/myposts/:userId", element: <Dashboard /> },
       { path: "/logout", element: <Logout /> },
     ],
   },

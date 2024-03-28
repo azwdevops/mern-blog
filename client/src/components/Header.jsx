@@ -3,12 +3,15 @@ import { Link } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
 import logo from "@/images/logo.png";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "@/context/AuthContext";
 
 const Header = () => {
   const [isNavOpen, setIsNavOpen] = useState(
     window.innerWidth > 800 ? true : false
   );
+
+  const { currentUser } = useContext(AuthContext);
 
   const closeNavbar = () => {
     if (window.innerWidth < 800) {
@@ -23,11 +26,11 @@ const Header = () => {
         <Link to="/" className="nav-logo" onClick={closeNavbar}>
           <img src={logo} alt="" />
         </Link>
-        {isNavOpen && (
+        {currentUser?.id && isNavOpen && (
           <ul className="nav-menu">
             <li>
-              <Link to="/profile/dzdvvx" onClick={closeNavbar}>
-                Will Smith
+              <Link to={`/profile/${currentUser.id}`} onClick={closeNavbar}>
+                {currentUser?.name}
               </Link>
             </li>
             <li>
@@ -43,6 +46,20 @@ const Header = () => {
             <li>
               <Link to="/logout" onClick={closeNavbar}>
                 Logout
+              </Link>
+            </li>
+          </ul>
+        )}
+        {!currentUser?.id && isNavOpen && (
+          <ul className="nav-menu">
+            <li>
+              <Link to="/authors" onClick={closeNavbar}>
+                Authors
+              </Link>
+            </li>
+            <li>
+              <Link to="/login" onClick={closeNavbar}>
+                Login
               </Link>
             </li>
           </ul>
